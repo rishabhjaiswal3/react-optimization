@@ -5,9 +5,12 @@ import About from './pages/About';
 import Stats from './pages/Stats';
 import Product from './pages/Product';
 import Cart from './pages/Cart';
+import NavBar from './components/NavBar';
 
 function App() {  
   return (
+   <>
+   <NavBar />
    <Routes>
     <Route path='/' element={<Home/>} />
     <Route path='/about' element={<About />}/>
@@ -15,6 +18,7 @@ function App() {
     <Route path='/product/:productId' element={<Product />}/>
     <Route path='/stats' element={<Stats />}/>
    </Routes>
+   </>
   )
 }
 

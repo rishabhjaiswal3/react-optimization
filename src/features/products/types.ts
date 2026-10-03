@@ -1,5 +1,5 @@
 export const CATEGORIES = [
-    'SPORTS', 'TOYS', "INSTRUMENTS", "ELECTRONICS"
+   'No Selection', 'SPORTS', 'TOYS', "INSTRUMENTS", "ELECTRONICS"
 ] as const
 
 

@@ -17,28 +17,29 @@ const ProductRow = ({ item, qty = 1, showRemoveButton = false,showAddToCard = fa
   const { addToCard, removeCard, setQty } = useCart();
 
   return (
-    <div className='productCard' >
-      <div onClick={()=>navigate(`/product/${item.id}`)}>
-        <div>
-          {item.id}
+    <div className='flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md' >
+      <div className="cursor-pointer space-y-1" onClick={()=>navigate(`/product/${item.id}`)}>
+        <div className="text-xs font-medium text-slate-400">
+          #{item.id}
         </div>
-        <div>
+        <div className="inline-block rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-600">
           {item.category}
         </div>
-        <div>
+        <div className="text-base font-semibold text-slate-800 hover:text-indigo-600">
           {item.name}
         </div>
-        <div>
-          {item.rating}
+        <div className="text-sm text-amber-600">
+          ★ {item.rating}
         </div>
-        <div>
-          {item.stock}
+        <div className="text-sm text-slate-500">
+          Stock: {item.stock}
         </div>
       </div>
-      <div className='flex justify-between'>
+      <div className='mt-4 flex flex-wrap items-center gap-2'>
         {
           showRemoveButton ? (
               <input
+                className="w-20 rounded-lg border border-slate-300 px-2 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 type="number"
                 min={1}
                 value={qty}
@@ -46,6 +47,7 @@ const ProductRow = ({ item, qty = 1, showRemoveButton = false,showAddToCard = fa
               />
             ) : (
               <input
+                className="w-20 rounded-lg border border-slate-300 px-2 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 type="number"
                 min={1}
                 value={quantity}
@@ -55,13 +57,13 @@ const ProductRow = ({ item, qty = 1, showRemoveButton = false,showAddToCard = fa
         }
         {
           showAddToCard ?
-          <button className='border border-gray-400 rounded p-2' onClick={()=> addToCard(item,quantity)}>
+          <button className='flex-1 rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-indigo-700' onClick={()=> addToCard(item,quantity)}>
             Add To Cart
           </button> : null
         }
         {
           showRemoveButton ?
-          <button className='border border-gray-400 rounded p-2' onClick={()=> removeCard(item)}>
+          <button className='flex-1 rounded-lg border border-rose-300 px-3 py-1.5 text-sm font-medium text-rose-600 transition hover:bg-rose-50' onClick={()=> removeCard(item)}>
             Remove From Cart
           </button> : null
         }

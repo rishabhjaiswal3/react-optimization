@@ -28,11 +28,11 @@ const Stats = () => {
   const topRated = getTopRated(products, 20)
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Stats</h2>
+    <div className="mx-auto min-h-screen max-w-6xl bg-slate-50 px-4 py-6 sm:px-6">
+      <h2 className="mb-6 text-2xl font-bold text-slate-800">Stats</h2>
 
-      <h3 className="font-semibold mb-2">Average price per category</h3>
-      <div className="w-full h-[300px] mb-8">
+      <h3 className="mb-2 font-semibold text-slate-700">Average price per category</h3>
+      <div className="mb-8 h-[260px] w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={averageByCategory}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -44,8 +44,8 @@ const Stats = () => {
         </ResponsiveContainer>
       </div>
 
-      <h3 className="font-semibold mb-2">Top 10 rated products</h3>
-      <div className="w-full h-[400px]">
+      <h3 className="mb-2 font-semibold text-slate-700">Top 10 rated products</h3>
+      <div className="h-[400px] w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:h-[480px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={topRated} layout="vertical" margin={{ left: 40 }}>
             <CartesianGrid strokeDasharray="3 3" />

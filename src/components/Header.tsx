@@ -2,9 +2,7 @@ import { CATEGORIES, FILTERS, type Category, type Product } from '../features/pr
 import { type PageFilters } from '../features/products/types'
 import { useProducts } from '../hooks/useProducts'
 import { generateNewProduct }  from '../utils/generateProducts'
-import { useNavigate } from 'react-router-dom'
 import type { ChangeEvent } from 'react'
-import { useCart } from '../hooks/useCart'
 
 export interface Filters {
   search: string,
@@ -58,11 +56,7 @@ interface HeaderProps {
 }
 
 const Header = ({ filters, setFilters }:HeaderProps) => {
-  const navigate = useNavigate();
   const { products, addProduct, removeLastProduct } = useProducts()
-
-  const count = products.length
-  const {productWithQuantity} = useCart();
 
   const addNewProduct = () => {
     const id = products.length + 1;
@@ -98,28 +92,15 @@ const Header = ({ filters, setFilters }:HeaderProps) => {
     setSortBy(e.target.value as PageFilters)
   }
 
-  const cartCount = productWithQuantity.reduce((total,item) =>{
-    return item.qty + total
-  },0)
-  
-
   return (
-    <div>
-      <h2>Header {count}</h2>
-      <div className="w3-dropdown-click">
-      <div className='flex justify-around w-[600px]' >
-        <button onClick={() => navigate('/stats') } className="w-full p-2 m-2 bg-gray-200">
-          Stats
-        </button>
-        <button onClick={() => navigate('/cart') } className="w-full p-2 m-2  bg-gray-200">
-          Cart {cartCount}
-        </button>
-      </div>
-      <div className='flex justify-around p-2 m-2 border-2 border-black'>
-        <button  className='border border-gray-400 rounded p-2' onClick = {addNewProduct} > add Product </button>
-        <button  className='border border-gray-400 rounded p-2' onClick = {removeLastProductFromList} > Remove Last Product </button>
-        <label>
-          <select value={filters.sortBy} onChange={selectFilter}>
+    <div className="border-b border-slate-200 bg-white">
+      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
+      <div className="w3-dropdown-click space-y-3">
+      <div className='flex flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:flex-row sm:flex-wrap sm:items-center'>
+        <button  className='rounded-lg border border-emerald-300 bg-white px-3 py-2 text-sm font-medium text-emerald-700 transition hover:bg-emerald-50' onClick = {addNewProduct} > add Product </button>
+        <button  className='rounded-lg border border-rose-300 bg-white px-3 py-2 text-sm font-medium text-rose-700 transition hover:bg-rose-50' onClick = {removeLastProductFromList} > Remove Last Product </button>
+        <label className="w-full sm:w-auto">
+          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" value={filters.sortBy} onChange={selectFilter}>
             {
               FILTERS.map((filter) => {
                 return (
@@ -131,8 +112,8 @@ const Header = ({ filters, setFilters }:HeaderProps) => {
 
         </label>
 
-        <label>
-          <select value={filters.category} onChange={handleCategoryChange}>
+        <label className="w-full sm:w-auto">
+          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" value={filters.category} onChange={handleCategoryChange}>
             {
               CATEGORIES.map((category) => {
                 return (
@@ -144,17 +125,18 @@ const Header = ({ filters, setFilters }:HeaderProps) => {
 
         </label>
 
-        <div className="mb-4">
-            <input onChange={setMinRangeValue} className="p-2 m-2  shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="minPrice" type="number" placeholder="min" value = {filters.minPrice}/>
-            <input onChange={setMaxPriceValue} className="p-2 m-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="maxPrice" type="number" placeholder="max" value = {filters.maxPrice}/>
+        <div className="flex w-full gap-2 sm:w-auto">
+            <input onChange={setMinRangeValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="minPrice" type="number" placeholder="min" value = {filters.minPrice}/>
+            <input onChange={setMaxPriceValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="maxPrice" type="number" placeholder="max" value = {filters.maxPrice}/>
         </div>
       </div>
 
 
 
-    <div className="mb-4 p-2">
-        <input onChange={setString} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="search" type="text" placeholder="Search" value = {filters.search}/>
+    <div>
+        <input onChange={setString} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-700 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" id="search" type="text" placeholder="Search" value = {filters.search}/>
     </div>
+      </div>
       </div>
     </div>
   )
