@@ -1,0 +1,6 @@
+.productCard{
+    border: 1px solid grey;
+    padding:10px;
+    margin:10px;
+    max-width:600px;
+}

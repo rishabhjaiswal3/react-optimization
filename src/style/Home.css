@@ -1,0 +1,8 @@
+.input-search {
+    max-width:800px;
+    min-width: 90%;
+    height:40px;
+    border-radius: 10px;
+    margin:20px;
+    border: 1px solid grey;
+}
