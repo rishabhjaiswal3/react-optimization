@@ -89,7 +89,7 @@ const Header = React.memo(({ filters, setFilters }:HeaderProps) => {
         <button  className='rounded-lg border border-emerald-300 bg-white px-3 py-2 text-sm font-medium text-emerald-700 transition hover:bg-emerald-50' onClick = {addProduct} > add Product </button>
         <button  className='rounded-lg border border-rose-300 bg-white px-3 py-2 text-sm font-medium text-rose-700 transition hover:bg-rose-50' onClick = {removeLastProduct} > Remove Last Product </button>
         <label className="w-full sm:w-auto">
-          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" value={filters.sortBy} onChange={selectFilter}>
+          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" aria-label="Sort by" value={filters.sortBy} onChange={selectFilter}>
             {
               FILTERS.map((filter) => {
                 return (
@@ -102,7 +102,7 @@ const Header = React.memo(({ filters, setFilters }:HeaderProps) => {
         </label>
 
         <label className="w-full sm:w-auto">
-          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" value={filters.category} onChange={handleCategoryChange}>
+          <select className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-auto" aria-label="Category" value={filters.category} onChange={handleCategoryChange}>
             {
               CATEGORIES.map((category) => {
                 return (
@@ -115,15 +115,15 @@ const Header = React.memo(({ filters, setFilters }:HeaderProps) => {
         </label>
 
         <div className="flex w-full gap-2 sm:w-auto">
-            <input onChange={setMinRangeValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="minPrice" type="number" placeholder="min" value = {filters.minPrice}/>
-            <input onChange={setMaxPriceValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="maxPrice" type="number" placeholder="max" value = {filters.maxPrice}/>
+            <input onChange={setMinRangeValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="minPrice" aria-label="Minimum price" type="number" placeholder="min" value = {filters.minPrice}/>
+            <input onChange={setMaxPriceValue} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 sm:w-28" id="maxPrice" aria-label="Maximum price" type="number" placeholder="max" value = {filters.maxPrice}/>
         </div>
       </div>
 
 
 
     <div>
-        <input onChange={setString} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-700 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" id="search" type="text" placeholder="Search" value = {filters.search}/>
+        <input onChange={setString} className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-slate-700 shadow-sm placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200" id="search" aria-label="Search products" type="text" placeholder="Search" value = {filters.search}/>
     </div>
       </div>
       </div>

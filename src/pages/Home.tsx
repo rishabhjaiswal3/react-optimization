@@ -11,12 +11,12 @@ const ROW_HEIGHT = 220
 
 const getColumns = (width: number) => (width >= 900 ? 3 : width >= 560 ? 2 : 1)
 
-const Row = ({ index, style, products, columns }: RowComponentProps<{ products: Product[], columns: number }>) => {
+const Row = ({ index, style, ariaAttributes, products, columns }: RowComponentProps<{ products: Product[], columns: number }>) => {
   const start = index * columns
   const items = products.slice(start, start + columns)
 
   return (
-    <div style={style}>
+    <div style={style} {...ariaAttributes}>
       <div className="grid h-full gap-4 pb-4" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
         {
           items.map((product) => <ProductRow key={product.id} item={product} qty={1} showRemoveButton={false} showAddToCard={true} />)

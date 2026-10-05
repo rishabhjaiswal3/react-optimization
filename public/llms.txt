@@ -1,0 +1,9 @@
+# Product Explorer
+
+> A React app for browsing 10,000 products with search, filters, sorting, a cart and a stats page.
+
+## Pages
+
+- [Products](/): searchable, filterable and sortable product list
+- [Cart](/cart): products added to the cart, with quantities
+- [Stats](/stats): average price per category and top rated products

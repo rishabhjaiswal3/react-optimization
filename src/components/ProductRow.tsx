@@ -19,7 +19,7 @@ const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAdd
   return (
     <div className='flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md' >
       <div className="cursor-pointer space-y-1" onClick={()=>navigate(`/product/${item.id}`)}>
-        <div className="text-xs font-medium text-slate-400">
+        <div className="text-xs font-medium text-slate-500">
           #{item.id}
         </div>
         <div className="inline-block rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-indigo-600">
@@ -28,7 +28,7 @@ const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAdd
         <div className="text-base font-semibold text-slate-800 hover:text-indigo-600">
           {item.name}
         </div>
-        <div className="text-sm text-amber-600">
+        <div className="text-sm text-amber-700">
           ★ {item.rating}
         </div>
         <div className="text-sm text-slate-500">
@@ -41,6 +41,7 @@ const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAdd
               <input
                 className="w-20 rounded-lg border border-slate-300 px-2 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 type="number"
+                aria-label={`Quantity for ${item.name}`}
                 min={1}
                 value={qty}
                 onChange={e => setQty(item, Number(e.target.value))}
@@ -49,6 +50,7 @@ const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAdd
               <input
                 className="w-20 rounded-lg border border-slate-300 px-2 py-1.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
                 type="number"
+                aria-label={`Quantity for ${item.name}`}
                 min={1}
                 value={quantity}
                 onChange={e => setQuantity(Number(e.target.value))}
