@@ -2,13 +2,13 @@ import { useState } from "react";
 import ProductRow from "../components/ProductRow";
 import Header, { applyFilters, DEFAULT_FILTERS, type Filters } from "../components/Header";
 import "../style/Home.css"
-import { useProducts } from "../hooks/useProducts";
+import { useProductState } from "../hooks/useProducts";
 
 const Home = () => {
 
     const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS)
 
-    const { products } = useProducts();
+    const { products } = useProductState();
     const newProducts = applyFilters(products, filters)
 
     return (

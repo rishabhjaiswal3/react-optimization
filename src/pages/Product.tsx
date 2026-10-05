@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { products } from "../features/products/data";
 import ProductRow from "../components/ProductRow";
+import { useProductState } from "../hooks/useProducts";
 
 const Product = () => {
 
   const { productId } = useParams()
+  const { products } = useProductState();
 
   const product = products.find(product => product.id === Number(productId) )
 

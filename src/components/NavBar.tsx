@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import { useProducts } from '../hooks/useProducts'
-import { useCart } from '../hooks/useCart'
+import { useProductState } from '../hooks/useProducts'
+import { useCartState } from '../hooks/useCart'
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { products } = useProducts()
-  const { productWithQuantity } = useCart();
+  const { products } = useProductState()
+  const { productWithQuantity } = useCartState();
 
   const count = products.length
 

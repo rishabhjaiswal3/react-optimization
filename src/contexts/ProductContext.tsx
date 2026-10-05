@@ -1,40 +1,49 @@
-import { createContext } from "react";
+import { createContext, useCallback, useMemo } from "react";
 import type { Product } from "../features/products/types";
 import type { ReactNode } from "react";
 import { products } from "../features/products/data";
 import { useState } from "react";
+import { generateNewProduct } from "../utils/generateProducts";
 
 interface ProductProps {
   children: ReactNode
 }
 
-interface ProductContextValue {
+interface ProductStateContextValue {
   products: Product[]
-  addProduct: (product: Product) => void
+}
+
+interface ProductActionsContextValue {
+  addProduct: () => void
   removeLastProduct: () => void
 }
 
-export const ProductContext = createContext<ProductContextValue | null>(null)
-
+export const ProductStateContext = createContext<ProductStateContextValue | null>(null)
+export const ProductActionsContext = createContext<ProductActionsContextValue | null >(null);
 
 const ProductProvider = ({ children }:ProductProps) => {
 
     const [productList, setProductList] = useState<Product[]>(products)
 
-    const addProduct = (product: Product) => {
-        setProductList(prev => [...prev, product])
-    }
+    const addProduct = useCallback(() => {
+         setProductList(prev => {
+            const nextId = prev.reduce((max, p) => Math.max(max, p.id), 0) + 1
+            return [...prev, generateNewProduct(nextId)]
+        })
+    },[])
 
-    const removeLastProduct = () => {
-       const newProducts =  [ ...productList.sort((a,b)=> a.id - b.id)]
-       newProducts.pop();
-       setProductList(newProducts)
-    }
+    const removeLastProduct = useCallback(() => {
+       setProductList(prev => prev.toSorted((a, b) => a.id - b.id).slice(0, -1))
+    },[])
+
+    const actions = useMemo(() => ({ addProduct, removeLastProduct }), [addProduct, removeLastProduct])
 
     return (
-        <ProductContext.Provider value={{ products:productList, addProduct, removeLastProduct }}>
-            {children}
-        </ProductContext.Provider>
+        <ProductActionsContext.Provider value = {actions} >
+          <ProductStateContext.Provider value={{ products:productList }}>
+              {children}
+          </ProductStateContext.Provider>
+        </ProductActionsContext.Provider>
     );
 }
 

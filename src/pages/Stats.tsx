@@ -1,5 +1,5 @@
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useProducts } from "../hooks/useProducts";
+import { useProductState } from "../hooks/useProducts";
 import type { Product } from "../features/products/types";
 
 const getAveragePriceByCategory = (products: Product[]) => {
@@ -22,7 +22,7 @@ const getTopRated = (products: Product[], count: number) =>
   products.toSorted((a, b) => b.rating - a.rating).slice(0, count)
 
 const Stats = () => {
-  const { products } = useProducts()
+  const { products } = useProductState()
 
   const averageByCategory = getAveragePriceByCategory(products)
   const topRated = getTopRated(products, 20)

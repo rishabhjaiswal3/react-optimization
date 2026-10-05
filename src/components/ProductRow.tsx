@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import type { Product } from '../features/products/types';
-import { useCart } from '../hooks/useCart';
+import { useCartActions } from '../hooks/useCart';
 import "./style.css"
 import { useNavigate } from 'react-router-dom';
 
@@ -11,10 +11,10 @@ interface ProductRowProps {
   showAddToCard: boolean
 }
 
-const ProductRow = ({ item, qty = 1, showRemoveButton = false,showAddToCard = false  } : ProductRowProps) => {
+const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAddToCard = false  } : ProductRowProps) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(qty);
-  const { addToCard, removeCard, setQty } = useCart();
+  const { addToCard, removeCard, setQty } = useCartActions();
 
   return (
     <div className='flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md' >
@@ -71,6 +71,6 @@ const ProductRow = ({ item, qty = 1, showRemoveButton = false,showAddToCard = fa
       </div>
     </div>
   );
-};
+});
 
 export default ProductRow;

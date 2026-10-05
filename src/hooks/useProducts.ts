@@ -1,12 +1,23 @@
 import { useContext } from "react";
-import { ProductContext } from "../contexts/ProductContext";
+import { ProductActionsContext, ProductStateContext } from "../contexts/ProductContext";
 
-export const useProducts = () => {
+export const useProductActions = () => {
 
-    const productData =  useContext(ProductContext)
+    const productActionData =  useContext(ProductActionsContext)
 
-    if(!productData) 
-            throw new Error('use Product musth ave used inside products')
+    if(!productActionData) 
+            throw new Error('use ProductAction must ave used Actions products')
 
-    return productData;
+    return productActionData;
+}
+
+export const useProductState = () => {
+
+    const productStateData =  useContext(ProductStateContext)
+
+    if(!productStateData) 
+            throw new Error('use ProductAction must ave used Actions products')
+
+    return productStateData;
+
 }
