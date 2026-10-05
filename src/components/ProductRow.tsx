@@ -11,6 +11,10 @@ interface ProductRowProps {
   showAddToCard: boolean
 }
 
+const prefetchProductPage = () => {
+  import('../pages/Product')
+}
+
 const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAddToCard = false  } : ProductRowProps) => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(qty);
@@ -18,7 +22,7 @@ const ProductRow = React.memo(({ item, qty = 1, showRemoveButton = false,showAdd
 
   return (
     <div className='flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md' >
-      <div className="cursor-pointer space-y-1" onClick={()=>navigate(`/product/${item.id}`)}>
+      <div className="cursor-pointer space-y-1" onClick={()=>navigate(`/product/${item.id}`)} onMouseEnter={prefetchProductPage}>
         <div className="text-xs font-medium text-slate-500">
           #{item.id}
         </div>
