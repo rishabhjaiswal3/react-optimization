@@ -12,9 +12,9 @@ const Cart = () => {
     <div className="mx-auto grid min-h-screen max-w-6xl grid-cols-1 content-start gap-4 bg-slate-50 px-4 py-6 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
       {
         productWithQuantity.map(({ product, qty }:ProductQuantity)=> {
-          return (<>
-            <ProductRow item={product} qty = {qty} showRemoveButton = {true} showAddToCard={false} />
-          </>)
+          return (
+            <ProductRow key={product.id} item={product} qty = {qty} showRemoveButton = {true} showAddToCard={false} />
+          )
         })
       }
     </div>
